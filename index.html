@@ -32,7 +32,7 @@
                 <button id="clearButton" type="button">Clear</button>
             </div>
 
-            <p id="searchMessage" aria-live="polite"></p>
+            <p id="searchMessage" aria-live="polite">Showing all products.</p>
 
             <div id="productList">
                 <article class="product-card" data-name="Pork">
@@ -88,30 +88,41 @@
                 }
             });
 
-            if (visibleProducts === 0) {
-                searchMessage.textContent = "No products found.";
+            if (searchTerm === "") {
+                searchMessage.textContent =
+                    "Showing all " + visibleProducts + " products.";
+            } else if (visibleProducts === 0) {
+                searchMessage.textContent =
+                    'No products found for "' +
+                    searchInput.value.trim() + '".';
             } else {
                 searchMessage.textContent =
-                    visibleProducts + " product(s) found.";
+                    visibleProducts + ' product(s) found for "' +
+                    searchInput.value.trim() + '".';
             }
         }
 
+        // Search when the Search button is clicked.
         searchButton.addEventListener("click", searchProducts);
 
+        // Search when Enter is pressed.
         searchInput.addEventListener("keydown", function (event) {
             if (event.key === "Enter") {
                 searchProducts();
             }
         });
 
+        // Update results while the user types.
+        searchInput.addEventListener("input", searchProducts);
+
+        // Clear the search and show all products.
         clearButton.addEventListener("click", function () {
             searchInput.value = "";
             searchProducts();
             searchInput.focus();
         });
 
-        searchInput.addEventListener("input", searchProducts);
-
+        // Display all products when the page first loads.
         searchProducts();
     </script>
 </body>
