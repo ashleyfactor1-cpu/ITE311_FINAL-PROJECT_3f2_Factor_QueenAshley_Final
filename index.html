@@ -132,26 +132,150 @@
     </footer>
 
     <script>
-        // Product search
-        const searchInput = document.getElementById("searchInput");
-        const searchButton = document.getElementById("searchButton");
-        const clearButton = document.getElementById("clearButton");
-        const searchMessage = document.getElementById("searchMessage");
-        const productCards = document.querySelectorAll(".product-card");
+        // Product Search
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+const clearButton = document.getElementById("clearButton");
+const searchMessage = document.getElementById("searchMessage");
+const productCards = document.querySelectorAll(".product-card");
 
-        function searchProducts() {
-            const searchTerm = searchInput.value.trim().toLowerCase();
-            let visibleProducts = 0;
+function searchProducts() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    let visibleProducts = 0;
 
-            productCards.forEach(function (product) {
-                const productName = product.dataset.name.toLowerCase();
-                const matches = productName.includes(searchTerm);
+    productCards.forEach(function (product) {
+        const productName = product.dataset.name.toLowerCase();
+        const matches = productName.includes(searchTerm);
 
-                product.style.display = matches ? "block" : "none";
+        product.style.display = matches ? "block" : "none";
 
-                if (matches) {
-                    visibleProducts++;
-                }
-            });
+        if (matches) {
+            visibleProducts++;
+        }
+    });
 
-            if (searchTerm
+    if (searchTerm === "") {
+        searchMessage.textContent =
+            "Showing all " + visibleProducts + " products.";
+    } else if (visibleProducts === 0) {
+        searchMessage.textContent =
+            'No products found for "' +
+            searchInput.value.trim() + '".';
+    } else {
+        searchMessage.textContent =
+            visibleProducts + ' product(s) found for "' +
+            searchInput.value.trim() + '".';
+    }
+}
+
+searchButton.addEventListener("click", searchProducts);
+
+searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        searchProducts();
+    }
+});
+
+searchInput.addEventListener("input", searchProducts);
+
+clearButton.addEventListener("click", function () {
+    searchInput.value = "";
+    searchProducts();
+    searchInput.focus();
+});
+
+searchProducts();
+
+
+// Pickup Reservation
+const reservationForm = document.getElementById("reservationForm");
+const customerName = document.getElementById("customerName");
+const reservationProduct = document.getElementById("reservationProduct");
+const quantity = document.getElementById("quantity");
+const pickupDate = document.getElementById("pickupDate");
+const reservationMessage = document.getElementById("reservationMessage");
+const reservationResult = document.getElementById("reservationResult");
+
+// Set today's date as the earliest available pickup date.
+const today = new Date();
+
+const localToday = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().split("T")[0];
+
+pickupDate.min = localToday;
+
+
+// Handle reservation form submission.
+reservationForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = customerName.value.trim();
+    const product = reservationProduct.value;
+    const amount = Number(quantity.value);
+    const date = pickupDate.value;
+
+    if (!name) {
+        reservationMessage.textContent =
+            "Please enter your full name.";
+        reservationResult.hidden = true;
+        return;
+    }
+
+    if (!product) {
+        reservationMessage.textContent =
+            "Please select a meat product.";
+        reservationResult.hidden = true;
+        return;
+    }
+
+    if (!Number.isInteger(amount) || amount < 1) {
+        reservationMessage.textContent =
+            "Please enter a valid quantity of at least 1 kg.";
+        reservationResult.hidden = true;
+        return;
+    }
+
+    if (!date || date < localToday) {
+        reservationMessage.textContent =
+            "Please choose today or a future pickup date.";
+        reservationResult.hidden = true;
+        return;
+    }
+
+    // Format the pickup date for easier reading.
+    const formattedDate = new Date(
+        date + "T00:00:00"
+    ).toLocaleDateString("en-PH", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+
+    // Display the reservation details.
+    document.getElementById("resultName").textContent =
+        "Customer: " + name;
+
+    document.getElementById("resultProduct").textContent =
+        "Product: " + product;
+
+    document.getElementById("resultQuantity").textContent =
+        "Quantity: " + amount + " kg";
+
+    document.getElementById("resultDate").textContent =
+        "Pickup Date: " + formattedDate;
+
+    // Show the confirmation message.
+    reservationMessage.textContent =
+        "Reservation details prepared successfully! " +
+        "Please save these details for your reference.";
+
+    reservationResult.hidden = false;
+});
+
+
+// Clear the form and hide the previous reservation details.
+reservationForm.addEventListener("reset", function () {
+    reservationMessage.textContent = "";
+    reservationResult.hidden = true;
+});
