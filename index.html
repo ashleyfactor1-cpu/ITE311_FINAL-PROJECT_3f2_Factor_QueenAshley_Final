@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header>
         <div class="container nav">
             <h1 class="logo">🥩 MeatHub</h1>
@@ -29,13 +29,13 @@
             </div>
         </section>
 
+        <!-- PRODUCT CATALOG AND SEARCH -->
         <section id="products" class="section container">
             <h2>Our Meat Products</h2>
             <p class="section-description">
                 Choose from our available local meat products.
             </p>
 
-            <!-- Product Search Feature -->
             <div class="search-container">
                 <input
                     type="text"
@@ -52,14 +52,18 @@
             </p>
 
             <div class="product-grid" id="productList">
-
                 <article class="product-card" data-name="Pork">
                     <div class="product-icon">🐖</div>
                     <h3>Fresh Pork</h3>
                     <p>Fresh pork sourced from local producers.</p>
                     <p class="price">₱350 / kg</p>
-                    <p>Available Stock: <span id="pork-stock">20</span> kg</p>
-                    <button onclick="reserveProduct('Pork')">Reserve Pork</button>
+                    <p>
+                        Available Stock:
+                        <span id="pork-stock">20</span> kg
+                    </p>
+                    <button type="button" onclick="reserveProduct('Pork')">
+                        Reserve Pork
+                    </button>
                 </article>
 
                 <article class="product-card" data-name="Beef">
@@ -67,8 +71,13 @@
                     <h3>Fresh Beef</h3>
                     <p>Quality beef for your favorite dishes.</p>
                     <p class="price">₱450 / kg</p>
-                    <p>Available Stock: <span id="beef-stock">15</span> kg</p>
-                    <button onclick="reserveProduct('Beef')">Reserve Beef</button>
+                    <p>
+                        Available Stock:
+                        <span id="beef-stock">15</span> kg
+                    </p>
+                    <button type="button" onclick="reserveProduct('Beef')">
+                        Reserve Beef
+                    </button>
                 </article>
 
                 <article class="product-card" data-name="Chicken">
@@ -76,16 +85,21 @@
                     <h3>Fresh Chicken</h3>
                     <p>Fresh chicken from trusted local suppliers.</p>
                     <p class="price">₱220 / kg</p>
-                    <p>Available Stock: <span id="chicken-stock">25</span> kg</p>
-                    <button onclick="reserveProduct('Chicken')">Reserve Chicken</button>
+                    <p>
+                        Available Stock:
+                        <span id="chicken-stock">25</span> kg
+                    </p>
+                    <button type="button" onclick="reserveProduct('Chicken')">
+                        Reserve Chicken
+                    </button>
                 </article>
-
             </div>
         </section>
 
+        <!-- PICKUP RESERVATION -->
         <section id="reservation" class="section reservation-section">
             <div class="container">
-                <h2>Meat Reservation</h2>
+                <h2>Meat Pickup Reservation</h2>
                 <p class="section-description">
                     Fill out the form to reserve your meat products.
                 </p>
@@ -129,9 +143,14 @@
                     </div>
 
                     <button type="submit">Submit Reservation</button>
+                    <button type="reset">Clear Form</button>
                 </form>
 
-                <div id="reservation-message" class="message" role="status"></div>
+                <div
+                    id="reservation-message"
+                    class="message"
+                    role="status"
+                ></div>
 
                 <div class="reservation-list">
                     <h3>Reservation Records</h3>
@@ -157,6 +176,7 @@
             </div>
         </section>
 
+        <!-- INVENTORY MANAGEMENT -->
         <section id="inventory" class="section container">
             <h2>Inventory Management</h2>
             <p class="section-description">
@@ -177,36 +197,75 @@
                         <tr>
                             <td>Fresh Pork</td>
                             <td>
-                                <input type="number" id="pork-price" value="350" min="1">
+                                <input
+                                    type="number"
+                                    id="pork-price"
+                                    value="350"
+                                    min="1"
+                                >
                             </td>
                             <td id="pork-inventory">20</td>
                             <td>
-                                <input type="number" id="pork-update" min="0" value="20">
-                                <button onclick="updateInventory('Pork')">Update</button>
+                                <input
+                                    type="number"
+                                    id="pork-update"
+                                    min="0"
+                                    value="20"
+                                >
+                                <button
+                                    type="button"
+                                    onclick="updateInventory('Pork')"
+                                >Update</button>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Fresh Beef</td>
                             <td>
-                                <input type="number" id="beef-price" value="450" min="1">
+                                <input
+                                    type="number"
+                                    id="beef-price"
+                                    value="450"
+                                    min="1"
+                                >
                             </td>
                             <td id="beef-inventory">15</td>
                             <td>
-                                <input type="number" id="beef-update" min="0" value="15">
-                                <button onclick="updateInventory('Beef')">Update</button>
+                                <input
+                                    type="number"
+                                    id="beef-update"
+                                    min="0"
+                                    value="15"
+                                >
+                                <button
+                                    type="button"
+                                    onclick="updateInventory('Beef')"
+                                >Update</button>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Fresh Chicken</td>
                             <td>
-                                <input type="number" id="chicken-price" value="220" min="1">
+                                <input
+                                    type="number"
+                                    id="chicken-price"
+                                    value="220"
+                                    min="1"
+                                >
                             </td>
                             <td id="chicken-inventory">25</td>
                             <td>
-                                <input type="number" id="chicken-update" min="0" value="25">
-                                <button onclick="updateInventory('Chicken')">Update</button>
+                                <input
+                                    type="number"
+                                    id="chicken-update"
+                                    min="0"
+                                    value="25"
+                                >
+                                <button
+                                    type="button"
+                                    onclick="updateInventory('Chicken')"
+                                >Update</button>
                             </td>
                         </tr>
                     </tbody>
@@ -224,19 +283,21 @@
         </div>
     </footer>
 
-    <!-- Product Search JavaScript -->
     <script>
+        // PRODUCT SEARCH
         const searchInput = document.getElementById("searchInput");
         const searchButton = document.getElementById("searchButton");
         const clearButton = document.getElementById("clearButton");
         const searchMessage = document.getElementById("searchMessage");
-        const productCards = document.querySelectorAll("#productList .product-card");
+        const productCards = document.querySelectorAll(
+            "#productList .product-card"
+        );
 
         function searchProducts() {
             const searchTerm = searchInput.value.trim().toLowerCase();
             let visibleProducts = 0;
 
-            productCards.forEach(function(product) {
+            productCards.forEach(function (product) {
                 const productName = product.dataset.name.toLowerCase();
                 const matches = productName.includes(searchTerm);
 
@@ -252,7 +313,8 @@
                     "Showing all " + visibleProducts + " products.";
             } else if (visibleProducts === 0) {
                 searchMessage.textContent =
-                    'No products found for "' + searchInput.value.trim() + '".';
+                    'No products found for "' +
+                    searchInput.value.trim() + '".';
             } else {
                 searchMessage.textContent =
                     visibleProducts + ' product(s) found for "' +
@@ -262,23 +324,191 @@
 
         searchButton.addEventListener("click", searchProducts);
 
-        searchInput.addEventListener("keydown", function(event) {
+        searchInput.addEventListener("input", searchProducts);
+
+        searchInput.addEventListener("keydown", function (event) {
             if (event.key === "Enter") {
                 event.preventDefault();
                 searchProducts();
             }
         });
 
-        searchInput.addEventListener("input", searchProducts);
-
-        clearButton.addEventListener("click", function() {
+        clearButton.addEventListener("click", function () {
             searchInput.value = "";
             searchProducts();
             searchInput.focus();
         });
 
+        // PRODUCT PRICES AND STOCK
+        const prices = {
+            Pork: 350,
+            Beef: 450,
+            Chicken: 220
+        };
+
+        const stocks = {
+            Pork: 20,
+            Beef: 15,
+            Chicken: 25
+        };
+
+        // RESERVATION FORM ELEMENTS
+        const reservationForm =
+            document.getElementById("reservation-form");
+        const customerName =
+            document.getElementById("customer-name");
+        const reservationProduct =
+            document.getElementById("product");
+        const quantityInput =
+            document.getElementById("quantity");
+        const pickupDate =
+            document.getElementById("pickup-date");
+        const reservationMessage =
+            document.getElementById("reservation-message");
+        const reservationTable =
+            document.getElementById("reservation-table");
+        const inventoryMessage =
+            document.getElementById("inventory-message");
+
+        // Prevent selecting a date earlier than today.
+        const now = new Date();
+        const localToday = new Date(
+            now.getTime() - now.getTimezoneOffset() * 60000
+        ).toISOString().split("T")[0];
+
+        pickupDate.min = localToday;
+
+        // Select a product and scroll to the reservation form.
+        function reserveProduct(product) {
+            reservationProduct.value = product;
+            document.getElementById("reservation").scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+        // UPDATE INVENTORY
+        function updateInventory(product) {
+            const key = product.toLowerCase();
+            const newPrice = Number(
+                document.getElementById(key + "-price").value
+            );
+            const newStock = Number(
+                document.getElementById(key + "-update").value
+            );
+
+            if (
+                !Number.isFinite(newPrice) ||
+                newPrice < 1 ||
+                !Number.isInteger(newStock) ||
+                newStock < 0
+            ) {
+                inventoryMessage.textContent =
+                    "Enter a valid price and a stock quantity of 0 or more.";
+                return;
+            }
+
+            prices[product] = newPrice;
+            stocks[product] = newStock;
+
+            document.getElementById(key + "-inventory").textContent =
+                newStock;
+            document.getElementById(key + "-stock").textContent =
+                newStock;
+
+            const productCard = document.querySelector(
+                '.product-card[data-name="' + product + '"]'
+            );
+
+            productCard.querySelector(".price").textContent =
+                "₱" + newPrice + " / kg";
+
+            inventoryMessage.textContent =
+                product + " inventory updated successfully.";
+        }
+
+        // SUBMIT RESERVATION
+        reservationForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = customerName.value.trim();
+            const product = reservationProduct.value;
+            const amount = Number(quantityInput.value);
+            const date = pickupDate.value;
+
+            if (
+                !name ||
+                !product ||
+                !Number.isInteger(amount) ||
+                amount < 1 ||
+                !date ||
+                date < localToday
+            ) {
+                reservationMessage.textContent =
+                    "Please complete all fields using a valid quantity and today or a future pickup date.";
+                return;
+            }
+
+            if (amount > stocks[product]) {
+                reservationMessage.textContent =
+                    "Not enough stock available. Current stock: " +
+                    stocks[product] + " kg.";
+                return;
+            }
+
+            const total = amount * prices[product];
+
+            // Deduct reserved quantity from stock.
+            stocks[product] -= amount;
+
+            const key = product.toLowerCase();
+
+            document.getElementById(key + "-stock").textContent =
+                stocks[product];
+            document.getElementById(key + "-inventory").textContent =
+                stocks[product];
+            document.getElementById(key + "-update").value =
+                stocks[product];
+
+            // Remove the initial "No reservations yet" row.
+            const firstRow = reservationTable.querySelector(
+                "td[colspan='5']"
+            );
+
+            if (firstRow) {
+                reservationTable.innerHTML = "";
+            }
+
+            // Add the reservation record to the table.
+            const row = document.createElement("tr");
+
+            [
+                name,
+                product,
+                amount + " kg",
+                date,
+                "₱" + total.toFixed(2)
+            ].forEach(function (value) {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+
+            reservationTable.appendChild(row);
+
+            reservationMessage.textContent =
+                "Reservation submitted successfully!";
+
+            reservationForm.reset();
+        });
+
+        // CLEAR RESERVATION MESSAGE WHEN FORM IS RESET
+        reservationForm.addEventListener("reset", function () {
+            reservationMessage.textContent = "";
+        });
+
+        // SHOW ALL PRODUCTS WHEN THE PAGE LOADS
         searchProducts();
     </script>
-
 </body>
 </html>
+```
