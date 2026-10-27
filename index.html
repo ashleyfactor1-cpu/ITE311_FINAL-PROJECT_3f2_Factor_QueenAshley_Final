@@ -35,8 +35,25 @@
                 Choose from our available local meat products.
             </p>
 
-            <div class="product-grid">
-                <article class="product-card">
+            <!-- Product Search Feature -->
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search meat products..."
+                    aria-label="Search meat products"
+                >
+                <button id="searchButton" type="button">Search</button>
+                <button id="clearButton" type="button">Clear Search</button>
+            </div>
+
+            <p id="searchMessage" class="search-message" role="status">
+                Showing all products.
+            </p>
+
+            <div class="product-grid" id="productList">
+
+                <article class="product-card" data-name="Pork">
                     <div class="product-icon">🐖</div>
                     <h3>Fresh Pork</h3>
                     <p>Fresh pork sourced from local producers.</p>
@@ -45,7 +62,7 @@
                     <button onclick="reserveProduct('Pork')">Reserve Pork</button>
                 </article>
 
-                <article class="product-card">
+                <article class="product-card" data-name="Beef">
                     <div class="product-icon">🐄</div>
                     <h3>Fresh Beef</h3>
                     <p>Quality beef for your favorite dishes.</p>
@@ -54,7 +71,7 @@
                     <button onclick="reserveProduct('Beef')">Reserve Beef</button>
                 </article>
 
-                <article class="product-card">
+                <article class="product-card" data-name="Chicken">
                     <div class="product-icon">🐔</div>
                     <h3>Fresh Chicken</h3>
                     <p>Fresh chicken from trusted local suppliers.</p>
@@ -62,6 +79,7 @@
                     <p>Available Stock: <span id="chicken-stock">25</span> kg</p>
                     <button onclick="reserveProduct('Chicken')">Reserve Chicken</button>
                 </article>
+
             </div>
         </section>
 
@@ -167,6 +185,7 @@
                                 <button onclick="updateInventory('Pork')">Update</button>
                             </td>
                         </tr>
+
                         <tr>
                             <td>Fresh Beef</td>
                             <td>
@@ -178,6 +197,7 @@
                                 <button onclick="updateInventory('Beef')">Update</button>
                             </td>
                         </tr>
+
                         <tr>
                             <td>Fresh Chicken</td>
                             <td>
@@ -204,6 +224,61 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Product Search JavaScript -->
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+        const clearButton = document.getElementById("clearButton");
+        const searchMessage = document.getElementById("searchMessage");
+        const productCards = document.querySelectorAll("#productList .product-card");
+
+        function searchProducts() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            let visibleProducts = 0;
+
+            productCards.forEach(function(product) {
+                const productName = product.dataset.name.toLowerCase();
+                const matches = productName.includes(searchTerm);
+
+                product.style.display = matches ? "" : "none";
+
+                if (matches) {
+                    visibleProducts++;
+                }
+            });
+
+            if (searchTerm === "") {
+                searchMessage.textContent =
+                    "Showing all " + visibleProducts + " products.";
+            } else if (visibleProducts === 0) {
+                searchMessage.textContent =
+                    'No products found for "' + searchInput.value.trim() + '".';
+            } else {
+                searchMessage.textContent =
+                    visibleProducts + ' product(s) found for "' +
+                    searchInput.value.trim() + '".';
+            }
+        }
+
+        searchButton.addEventListener("click", searchProducts);
+
+        searchInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                searchProducts();
+            }
+        });
+
+        searchInput.addEventListener("input", searchProducts);
+
+        clearButton.addEventListener("click", function() {
+            searchInput.value = "";
+            searchProducts();
+            searchInput.focus();
+        });
+
+        searchProducts();
+    </script>
+
 </body>
 </html>
