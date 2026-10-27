@@ -274,4 +274,28 @@ footer {
         padding-top: 35px;
         padding-bottom: 35px;
     }
+
+    .search-container {
+    display: flex;
+    gap: 10px;
+    max-width: 650px;
+    margin: 25px auto 10px;
+    flex-wrap: wrap;
+}
+
+.search-container input {
+    flex: 1;
+    min-width: 180px;
+}
+
+.search-container button {
+    margin-top: 0;
+}
+
+.search-message {
+    text-align: center;
+    color: #64748b;
+    margin: 10px 0 20px;
+}
+
 }
