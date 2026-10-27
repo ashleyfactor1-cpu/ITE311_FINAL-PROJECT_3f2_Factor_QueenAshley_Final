@@ -1,31 +1,277 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f8fafc;
+    background-color: #f8fafc;
     color: #1f2937;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
 }
 
 header {
-    background: #991b1b;
+    background-color: #7f1d1d;
     color: white;
-    padding: 24px;
+    padding: 18px 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 28px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #fecaca;
+}
+
+.hero {
+    background: linear-gradient(135deg, #991b1b, #450a0a);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    margin-bottom: 25px;
+}
+
+.button {
+    display: inline-block;
+    background-color: white;
+    color: #7f1d1d;
+    padding: 12px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #fee2e2;
+}
+
+.section {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+.section h2 {
+    text-align: center;
+    color: #7f1d1d;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.product-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.product-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    color: #7f1d1d;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #b91c1c;
+}
+
+button {
+    background-color: #991b1b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+button:hover {
+    background-color: #7f1d1d;
+}
+
+button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.reservation-section {
+    background-color: #fff1f2;
+}
+
+form {
+    background-color: white;
+    max-width: 650px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #fca5a5;
+    border-color: #991b1b;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+}
+
+.message {
+    text-align: center;
+    margin-top: 18px;
+    font-weight: bold;
+}
+
+.reservation-list {
+    margin-top: 40px;
+}
+
+.reservation-list h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #7f1d1d;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th,
+td {
+    border: 1px solid #e5e7eb;
+    padding: 12px;
     text-align: center;
 }
 
-main {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
+th {
+    background-color: #7f1d1d;
+    color: white;
 }
 
-section {
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
+td input {
+    min-width: 80px;
+    margin-bottom: 5px;
 }
 
 footer {
+    background-color: #450a0a;
+    color: white;
     text-align: center;
-    padding: 15px;
+    padding: 25px 0;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
 }

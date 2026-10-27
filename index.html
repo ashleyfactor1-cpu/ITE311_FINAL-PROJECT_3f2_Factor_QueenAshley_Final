@@ -7,44 +7,203 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
-        <h1>MeatHub</h1>
-        <p>Your Local Meat Marketplace</p>
+        <div class="container nav">
+            <h1 class="logo">🥩 MeatHub</h1>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#reservation">Reservation</a>
+                <a href="#inventory">Inventory</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section>
-            <h2>Welcome to MeatHub</h2>
-            <p>Discover quality meat products from local producers.</p>
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Fresh Meat, Delivered with Quality</h2>
+                <p>Your marketplace for fresh meat from local producers.</p>
+                <a href="#products" class="button">Browse Products</a>
+            </div>
         </section>
 
-        <section id="products">
-    <h2>Meat Products</h2>
+        <section id="products" class="section container">
+            <h2>Our Meat Products</h2>
+            <p class="section-description">
+                Choose from our available local meat products.
+            </p>
 
-    <div class="product-list">
-        <div class="product">
-            <h3>Pork</h3>
-            <p>Price: ₱350 per kg</p>
-            <p>Available Stock: 20 kg</p>
-        </div>
+            <div class="product-grid">
+                <article class="product-card">
+                    <div class="product-icon">🐖</div>
+                    <h3>Fresh Pork</h3>
+                    <p>Fresh pork sourced from local producers.</p>
+                    <p class="price">₱350 / kg</p>
+                    <p>Available Stock: <span id="pork-stock">20</span> kg</p>
+                    <button onclick="reserveProduct('Pork')">Reserve Pork</button>
+                </article>
 
-        <div class="product">
-            <h3>Beef</h3>
-            <p>Price: ₱450 per kg</p>
-            <p>Available Stock: 15 kg</p>
-        </div>
+                <article class="product-card">
+                    <div class="product-icon">🐄</div>
+                    <h3>Fresh Beef</h3>
+                    <p>Quality beef for your favorite dishes.</p>
+                    <p class="price">₱450 / kg</p>
+                    <p>Available Stock: <span id="beef-stock">15</span> kg</p>
+                    <button onclick="reserveProduct('Beef')">Reserve Beef</button>
+                </article>
 
-        <div class="product">
-            <h3>Chicken</h3>
-            <p>Price: ₱220 per kg</p>
-            <p>Available Stock: 25 kg</p>
-        </div>
-    </div>
-</section>
+                <article class="product-card">
+                    <div class="product-icon">🐔</div>
+                    <h3>Fresh Chicken</h3>
+                    <p>Fresh chicken from trusted local suppliers.</p>
+                    <p class="price">₱220 / kg</p>
+                    <p>Available Stock: <span id="chicken-stock">25</span> kg</p>
+                    <button onclick="reserveProduct('Chicken')">Reserve Chicken</button>
+                </article>
+            </div>
+        </section>
+
+        <section id="reservation" class="section reservation-section">
+            <div class="container">
+                <h2>Meat Reservation</h2>
+                <p class="section-description">
+                    Fill out the form to reserve your meat products.
+                </p>
+
+                <form id="reservation-form">
+                    <div class="form-group">
+                        <label for="customer-name">Customer Name</label>
+                        <input
+                            type="text"
+                            id="customer-name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product">Select Product</label>
+                        <select id="product" required>
+                            <option value="">Choose a product</option>
+                            <option value="Pork">Fresh Pork</option>
+                            <option value="Beef">Fresh Beef</option>
+                            <option value="Chicken">Fresh Chicken</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity (kg)</label>
+                        <input
+                            type="number"
+                            id="quantity"
+                            min="1"
+                            step="1"
+                            placeholder="Enter quantity"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pickup-date">Pickup Date</label>
+                        <input type="date" id="pickup-date" required>
+                    </div>
+
+                    <button type="submit">Submit Reservation</button>
+                </form>
+
+                <div id="reservation-message" class="message" role="status"></div>
+
+                <div class="reservation-list">
+                    <h3>Reservation Records</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Pickup Date</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reservation-table">
+                                <tr>
+                                    <td colspan="5">No reservations yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="inventory" class="section container">
+            <h2>Inventory Management</h2>
+            <p class="section-description">
+                View and update product prices and stock quantities.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price per kg</th>
+                            <th>Stock (kg)</th>
+                            <th>Update Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fresh Pork</td>
+                            <td>
+                                <input type="number" id="pork-price" value="350" min="1">
+                            </td>
+                            <td id="pork-inventory">20</td>
+                            <td>
+                                <input type="number" id="pork-update" min="0" value="20">
+                                <button onclick="updateInventory('Pork')">Update</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Fresh Beef</td>
+                            <td>
+                                <input type="number" id="beef-price" value="450" min="1">
+                            </td>
+                            <td id="beef-inventory">15</td>
+                            <td>
+                                <input type="number" id="beef-update" min="0" value="15">
+                                <button onclick="updateInventory('Beef')">Update</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Fresh Chicken</td>
+                            <td>
+                                <input type="number" id="chicken-price" value="220" min="1">
+                            </td>
+                            <td id="chicken-inventory">25</td>
+                            <td>
+                                <input type="number" id="chicken-update" min="0" value="25">
+                                <button onclick="updateInventory('Chicken')">Update</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="inventory-message" class="message" role="status"></p>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 MeatHub</p>
+        <div class="container">
+            <p>&copy; 2026 MeatHub | Supporting Local Meat Producers</p>
+            <p>Developed by Jaira Ease Aguilar | BSIT III - F2</p>
+        </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
