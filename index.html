@@ -20,12 +20,138 @@
 
         <section id="products">
             <h2>Meat Products</h2>
-            <p>Product listings will appear here.</p>
+
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search meat products..."
+                    aria-label="Search meat products"
+                >
+                <button id="searchButton" type="button">Search</button>
+                <button id="clearButton" type="button">Clear</button>
+            </div>
+
+            <p id="searchMessage" aria-live="polite"></p>
+
+            <div id="productList">
+                <article class="product-card" data-name="Pork">
+                    <h3>Pork</h3>
+                    <p>Fresh pork from local producers.</p>
+                    <p>Price: ₱280 per kg</p>
+                </article>
+
+                <article class="product-card" data-name="Beef">
+                    <h3>Beef</h3>
+                    <p>Quality beef for your favorite dishes.</p>
+                    <p>Price: ₱350 per kg</p>
+                </article>
+
+                <article class="product-card" data-name="Chicken">
+                    <h3>Chicken</h3>
+                    <p>Fresh chicken for everyday meals.</p>
+                    <p>Price: ₱180 per kg</p>
+                </article>
+
+                <article class="product-card" data-name="Fish">
+                    <h3>Fish</h3>
+                    <p>Fresh fish from local suppliers.</p>
+                    <p>Price: ₱220 per kg</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="reservation">
+            <h2>Pickup Reservation</h2>
+            <p>Reserve your meat products and choose your preferred pickup date.</p>
+
+            <form id="reservationForm">
+                <div>
+                    <label for="customerName">Customer Name:</label>
+                    <input
+                        type="text"
+                        id="customerName"
+                        name="customerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="reservationProduct">Meat Product:</label>
+                    <select id="reservationProduct" name="product" required>
+                        <option value="">Select a product</option>
+                        <option value="Pork">Pork</option>
+                        <option value="Beef">Beef</option>
+                        <option value="Chicken">Chicken</option>
+                        <option value="Fish">Fish</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="quantity">Quantity (kg):</label>
+                    <input
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min="1"
+                        step="1"
+                        placeholder="Enter quantity"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="pickupDate">Preferred Pickup Date:</label>
+                    <input
+                        type="date"
+                        id="pickupDate"
+                        name="pickupDate"
+                        required
+                    >
+                </div>
+
+                <button type="submit">Reserve Now</button>
+                <button type="reset">Clear Form</button>
+            </form>
+
+            <p id="reservationMessage" aria-live="polite"></p>
+
+            <div id="reservationResult" hidden>
+                <h3>Reservation Details</h3>
+                <p id="resultName"></p>
+                <p id="resultProduct"></p>
+                <p id="resultQuantity"></p>
+                <p id="resultDate"></p>
+            </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2026 MeatHub</p>
     </footer>
-</body>
-</html>
+
+    <script>
+        // Product search
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+        const clearButton = document.getElementById("clearButton");
+        const searchMessage = document.getElementById("searchMessage");
+        const productCards = document.querySelectorAll(".product-card");
+
+        function searchProducts() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            let visibleProducts = 0;
+
+            productCards.forEach(function (product) {
+                const productName = product.dataset.name.toLowerCase();
+                const matches = productName.includes(searchTerm);
+
+                product.style.display = matches ? "block" : "none";
+
+                if (matches) {
+                    visibleProducts++;
+                }
+            });
+
+            if (searchTerm
