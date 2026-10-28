@@ -1,6 +1,6 @@
 # MeatHub: An E-Commerce Marketplace for Local Meat Producers
 
-**Student Name:** Your Full Name  
+**Student Name:** Queen Ashley Factor  
 **Course:** Web System and Technologies 2  
 **Section:** BSIT III - F2
 
